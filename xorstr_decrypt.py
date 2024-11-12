@@ -357,7 +357,7 @@ class xor_decryption_mod(ida_idaapi.plugmod_t):
         binpat = ida_bytes.compiled_binpat_vec_t()
         ida_bytes.parse_binpat_str(binpat, match_ea, sig, 16)
         while True:
-            match_ea = ida_bytes.bin_search(
+            match_ea, _ = ida_bytes.bin_search3(
                 match_ea + 1, idaapi.BADADDR, binpat, idaapi.BIN_SEARCH_FORWARD)
             if match_ea != idaapi.BADADDR:
                 result = self.analyze(match_ea)
